@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 /*HOW TO COMPILE
-cc main.c -I./minilibx-linux -L./minilibx-linux -lmlx -lX11 -lXext -lm
+cc main.c -I.././mlx -L.././mlx -lmlx -lX11 -lXext -lm
 */
 #include "mlx.h"
 #include <stdio.h>
