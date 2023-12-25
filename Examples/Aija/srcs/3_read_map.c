@@ -67,7 +67,7 @@ void	get_map(t_fdf *data, char *file_name)
 
 	i = 0;
 	data->height = get_height(file_name);
-	//ft_printf("Height: %d\n\n", data->height);
+	ft_printf("Height: %d\n\n", data->height);
 	data->map = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map)
 		ft_error("Memory allocation failed for char array map.");

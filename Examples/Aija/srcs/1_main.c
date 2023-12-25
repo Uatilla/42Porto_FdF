@@ -65,6 +65,11 @@ int	main(int argc, char **argv)
 	if (!data)
 		ft_error("Failed to create program.");
 	get_map(data, argv[1]);
+	//On December 23, 2023
+
+
+
+
 	read_file(data);
 	new_program(data, "fdf");
 	if (!data->mlx_ptr || !data->win_ptr)

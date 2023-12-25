@@ -67,7 +67,7 @@ int	ft_printf(const char *format, ...)
 	return (count);
 }
 
-int	main()
+/*int	main()
 {
 	char *str;
 	str = "with string";
@@ -85,4 +85,4 @@ int	main()
     int count4 = printf("%p, %u, %u", p, 20, -20);
 	printf("\n");
 	printf("%d\n", count4);
-}
+}*/
