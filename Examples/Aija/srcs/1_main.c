@@ -71,6 +71,9 @@ int	main(int argc, char **argv)
 
 
 	read_file(data);
+	//On December 25, 2023
+
+
 	new_program(data, "fdf");
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (1);

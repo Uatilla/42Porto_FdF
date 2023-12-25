@@ -67,7 +67,7 @@ void	get_map(t_fdf *data, char *file_name)
 
 	i = 0;
 	data->height = get_height(file_name);
-	ft_printf("Height: %d\n\n", data->height);
+	//ft_printf("Height: %d\n\n", data->height);
 	data->map = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map)
 		ft_error("Memory allocation failed for char array map.");
@@ -102,6 +102,7 @@ void	read_file(t_fdf *data)
 	while (data->map[i])
 	{
 		curr_width = ft_count_words(data->map[i]);
+		ft_printf("Line[%d] curr_width: %d\n", i, curr_width);
 		if (prev_width == 0)
 			prev_width = curr_width;
 		else if (curr_width != prev_width)
