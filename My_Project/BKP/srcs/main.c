@@ -10,13 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
+/*HOW TO COMPILE
+cc main.c -I.././mlx -L.././mlx -lmlx -lX11 -lXext -lm
+*/
+#include "mlx.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int close_window(void *param)
 {
     (void)param; // Unused parameter
-    ft_printf("3) Closing the window.\n");
+    printf("3) Closing the window.\n");
     exit(0);
 }
 
@@ -25,23 +29,22 @@ int main()
     void    *mlx;
     void    *win1;
 
-    ft_printf("Since I know my makefile is working!\n\n");
-    ft_printf("MinilibX Test Program!\n");
-    ft_printf("Step 1) Initializing the connection:\n");
+    printf("Since I know my makefile is working!\n\n");
+    printf("MinilibX Test Program!\n");
+    printf("Step 1) Initializing the connection:\n");
     if (!(mlx = mlx_init()))
     {
         printf("[KO]\n");
         return (1);
     }
-    ft_printf("[OK]\n");
-    ft_printf("2) Starting the screen: \t");
+    printf("[OK]\n");
+    printf("2) Starting the screen: \t");
     if (!(win1 = mlx_new_window(mlx, 300, 300, "Hello_World!")))
     {
-        ft_printf("[KO]\n");
+        printf("[KO]\n");
         return (1);
     }
-    ft_printf("[OK]\n");
-    ft_printf("\n\n\n\n%d\n\n\n", ft_strlen("Hello"));
+    printf("[OK]\n");
    /*   UNDERSTAND WHY IT'S 17 AND 0L ON THE FUNCTION
    MLX_HOOK TO CLOSE O 'X' ON THE WINDOW AND WHERE COULD I FIND 
    THE OTHER NUMBERS PARAMETERS.
