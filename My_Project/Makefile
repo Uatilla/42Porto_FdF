@@ -44,7 +44,7 @@ MLXFLAGS	= -lmlx -lXext -lX11 -lm
 MK_FLAG		= --no-print-directory
 
 # Files
-SRCS		=	main.c
+SRCS		=	main.c errors_checker.c
 OBJS		=	$(SRCS:%.c=$(OBJS_DIR)/%.o)
 LIBMLX		=	./libraries/mlx/libmlx.a
 FT_PRINTF	=	./libraries/ft_printf/libftprintf.a
@@ -55,7 +55,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBMLX) $(FT_PRINTF) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) -L$(MLX_DIR) $(MLXFLAGS) $(FT_PRINTF) $(LIBFT) -o $(NAME)
-	printf "\nCompiling		$(GREEN)[OK]$(RESET)\n"
+	printf "Compiling		$(GREEN)[OK]$(RESET)\n"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	printf "Making binary files	$(YELLOW)[OK]$(RESET)\n"
@@ -63,20 +63,20 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	$(CC) -I $(INCLUDES) $(CFLAGS) -c $< -o $@
 
 $(LIBMLX):
-	printf "Making Libmlx		$(YELLOW)[OK]$(RESET)\n\n"
+	printf "Making Libmlx		$(YELLOW)[OK]$(RESET)\n"
 	$(MAKE) $(MK_FLAG) -sC $(MLX_DIR)
 
 $(FT_PRINTF):
-	printf "Making Ft_printf		$(YELLOW)[OK]$(RESET)\n\n"
+	printf "Making Ft_printf	$(YELLOW)[OK]$(RESET)\n"
 	$(MAKE) $(MK_FLAG) -sC $(FT_PRINTF_DIR)
 
 $(LIBFT):
-	printf "Making Libft		$(YELLOW)[OK]$(RESET)\n\n"
+	printf "Making Libft		$(YELLOW)[OK]$(RESET)\n"
 	$(MAKE) $(MK_FLAG) -sC $(LIBFT_DIR)
 
 clean:
 	$(RM) $(OBJS_DIR)
-	printf "clean FdF files			$(CYAN)[OK]$(RESET)\n"
+	printf "clean FdF files		$(CYAN)[OK]$(RESET)\n"
 	$(MAKE) $(MK_FLAG) clean -sC $(MLX_DIR)
 	$(MAKE) $(MK_FLAG) clean -sC $(FT_PRINTF_DIR)
 	$(MAKE) $(MK_FLAG) clean -sC $(LIBFT_DIR)

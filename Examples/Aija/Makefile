@@ -9,15 +9,30 @@
 #    Updated: 2023/08/03 09:21:48 by arepsa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+INCLUDES	=	includes
+#LIBFT		=	./libft/libft.a
+#LIBMLX		=	./mlx/libmlx.a
+
+
 
 NAME		=	fdf
+
+
+CC			= cc
+RM			= rm -rf
+LIBFLAGS	= ar -rcs
+
+
 SRCS_DIR	=	srcs
 OBJS_DIR	=	objs
-INCLUDES	=	includes
-LIBFT		=	./libft/libft.a
 LIBFT_DIR	=	./libft
-LIBMLX		=	./mlx/libmlx.a
 MLX_DIR		=	./mlx
+
+
+CFLAGS		= -Wall -Wextra -Werror -g 
+MLXFLAGS	= -lmlx -lXext -lX11 -lm -lbsd
+MK_FLAG		= --no-print-directory
+
 
 SRCS		=	1_main.c \
 				2_errors.c \
@@ -26,17 +41,11 @@ SRCS		=	1_main.c \
 				5_draw_line.c \
 				6_transform_map.c \
 				7_draw_utils.c	
-
-CC			= cc
-LIBFLAGS	= ar -rcs
-RM			= rm -rf
-
-CFLAGS		= -Wall -Wextra -Werror -g 
-MLXFLAGS	= -lmlx -lXext -lX11 -lm -lbsd
-MK_FLAG		= --no-print-directory
-
-
 OBJS		= $(SRCS:%.c=$(OBJS_DIR)/%.o)
+
+
+
+
 
 all: $(NAME)
 
@@ -49,14 +58,14 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	mkdir -p $(@D)
 	$(CC) -I $(INCLUDES) $(CFLAGS) -c $< -o $@
 
-$(LIBFT):
-	echo "Making libft..."
-	$(MAKE) $(MK_FLAG) -C $(LIBFT_DIR)
+#$(LIBFT):
+#	echo "Making libft..."
+#	$(MAKE) $(MK_FLAG) -C $(LIBFT_DIR)
 
-$(LIBMLX):
-	echo "Making MiniLibX..."
-	$(MAKE) $(MK_FLAG) -sC $(MLX_DIR)
-	echo "Done"
+#$(LIBMLX):
+#	echo "Making MiniLibX..."
+#	$(MAKE) $(MK_FLAG) -sC $(MLX_DIR)
+#	echo "Done"
 
 clean:
 	$(RM) $(OBJS_DIR)

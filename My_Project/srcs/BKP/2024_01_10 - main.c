@@ -10,17 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*HOW TO COMPILE
-cc main.c -I.././mlx -L.././mlx -lmlx -lX11 -lXext -lm
-*/
-#include "mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "fdf.h"
+
 
 int close_window(void *param)
 {
     (void)param; // Unused parameter
-    printf("3) Closing the window.\n");
+    ft_printf("3) Closing the window.\n");
     exit(0);
 }
 
@@ -28,29 +24,50 @@ int main()
 {
     void    *mlx;
     void    *win1;
+    t_data  img;
+    int     i;
+    int     j;
+    int     color;
 
-    printf("Since I know my makefile is working!\n\n");
-    printf("MinilibX Test Program!\n");
-    printf("Step 1) Initializing the connection:\n");
+    ft_printf("MinilibX Test Program!\n");
+    ft_printf("Step 1) Initializing the connection:\n");
     if (!(mlx = mlx_init()))
     {
         printf("[KO]\n");
         return (1);
     }
-    printf("[OK]\n");
-    printf("2) Starting the screen: \t");
-    if (!(win1 = mlx_new_window(mlx, 300, 300, "Hello_World!")))
+    ft_printf("[OK]\n");
+    ft_printf("2) Starting the screen: \t");
+    if (!(win1 = mlx_new_window(mlx, 1920, 1080, "Hello_World!")))
     {
-        printf("[KO]\n");
+        ft_printf("[KO]\n"); //Call a error function.
         return (1);
     }
-    printf("[OK]\n");
-   /*   UNDERSTAND WHY IT'S 17 AND 0L ON THE FUNCTION
-   MLX_HOOK TO CLOSE O 'X' ON THE WINDOW AND WHERE COULD I FIND 
-   THE OTHER NUMBERS PARAMETERS.
+    ft_printf("[OK]\n");
 
-   mlx_hook(win1, 17, 0L, close_window, mlx); // 17 is the identifier for the "window close" event
-   */
-   mlx_loop(mlx);
+    //Putting a Pixel on Screen
+    img.img = mlx_new_image(mlx, 1920, 1080);
+    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
+    i = 480;
+    j = 270;
+    color = 0xFFFFFFFF;
+    while (j <= 810)
+    {
+        while(i <= 1440)
+        {
+            mlx_pixel_put(mlx, win1,  i, j, color);
+            i++;
+        }
+        color++;
+        i = 480;
+        j++;
+    } 
+    
+    //Closing in a dirty way.
+    mlx_hook(win1, 17, 0L, close_window, mlx);
+    mlx_hook(win1, 2, 1L<<0, close_window, &img);
+    
+    //Keep the file running.
+    mlx_loop(mlx);
     return (0);
 }

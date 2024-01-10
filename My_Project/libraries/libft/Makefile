@@ -46,7 +46,6 @@ RL := ar -s #create a index for the static library.
 ${NAME}: ${SRCS_O}
 	${AR} ${NAME} ${SRCS_O}
 	${RL} ${NAME}
-	echo 'Mandatory Ok'
 #adding the OBJS inside the library.
 
 all: ${NAME} 
@@ -55,16 +54,13 @@ all: ${NAME}
 bonus: ${BONUS_O}
 	${AR} ${NAME} ${BONUS_O}
 	${RL} ${NAME}
-	echo 'Bonus Ok'
 
 clean:
 	${RM} ${OBJS}
-	echo 'Objects removed'
 #removing all .o files created.
 
 fclean: clean
 	${RM} ${NAME}
-	echo 'Static library removed'
 #removing all .o files created AND the libft.a file created.
 
 re: fclean all
