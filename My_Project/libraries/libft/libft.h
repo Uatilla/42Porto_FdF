@@ -21,6 +21,7 @@
 # include <string.h>
 # include <ctype.h>
 # include <stddef.h>
+# include "../get_next_line/get_next_line.h"
 
 /*_________________________________[FUNCTIONS]_______________________________*/
 /*-----------------------------*Mandatory Part I*----------------------------*/

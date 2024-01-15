@@ -16,7 +16,7 @@
 # include "../libraries/mlx/mlx.h"
 # include "../libraries/ft_printf/ft_printf.h"
 # include "../libraries/libft/libft.h"
-# include "../libraries/get_next_line/get_next_line.h"
+//# include "../libraries/get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <errno.h>
 # include <math.h>
@@ -55,5 +55,11 @@ typedef struct s_fdf
 }           t_fdf;
 
 //ERROR FUNCTIONS
-void    check_input_errors(int argc, char *file);
+int    check_input_errors(int argc, char *file);
+
+void    ft_error(char *msg);
+
+void    get_map(t_fdf *data, char *file, int fd);
+
+//int     get_height(char *file, int fd);
 #endif

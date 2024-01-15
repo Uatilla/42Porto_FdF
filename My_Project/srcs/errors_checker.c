@@ -18,15 +18,16 @@ void    ft_error(char *msg)
     exit(EXIT_FAILURE);
 }
 
-void    check_input_errors(int argc, char *file)
+int    check_input_errors(int argc, char *file)
 {
     int fd;
 
     if (argc != 2)
         ft_error("Input invalid!\nTry:\n ./fdf <filename.fdf>"); 
+       
     if((fd = open(file, O_RDONLY, 0)) == -1)
         ft_error("Failed to open the file.");
-    else
-        close(fd);
-    
+    /*else
+        close(fd);*/
+    return (fd);
 }

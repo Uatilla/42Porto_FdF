@@ -22,10 +22,27 @@ int close_window(void *param)
 
 int main(int argc, char **argv)
 {
-    //t_fdf   *data;
+    t_fdf   *data;
+    int     fd;
 
-    check_input_errors(argc, argv[1]);
-    /*if (!(mlx = mlx_init()))
+    //OPEN THE FILE
+    fd = check_input_errors(argc, argv[1]);
+    data = (t_fdf *)malloc(sizeof(t_fdf));
+    if (!data)
+    {
+        /*MAYBE I COULD HAVE A FUNCTION CALLED:
+        'PREPARE FOR CLOSE' TO FREE MEMORY AND CLOSE THE FILE.*/
+        close(fd);
+        ft_error("Data struct were not allocated on memory.");
+    }
+
+    //GETTING THE MAP.
+    get_map(data, argv[1], fd);
+
+
+    //RUNNING THE WINDOW
+    /*
+    if (!(mlx = mlx_init()))
     {
         printf("[KO]\n");
         return (1);
@@ -47,6 +64,8 @@ int main(int argc, char **argv)
     mlx_hook(win1, 2, 1L<<0, close_window, &img);
     
     //Keep the file running.
-    mlx_loop(mlx);*/
+    mlx_loop(mlx);
+    */
+   close(fd);
     return (0);
 }

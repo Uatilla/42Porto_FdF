@@ -26,7 +26,7 @@ static	char	*ft_get_remainder(char *line_to_clean)
 		free(line_to_clean);
 		return (NULL);
 	}
-	remainder = malloc(sizeof(char) * (ft_strlen(line_to_clean) - i + 1));
+	remainder = malloc(sizeof(char) * (ft_strlen_gnl(line_to_clean) - i + 1));
 	if (!remainder)
 		return (NULL);
 	i++;

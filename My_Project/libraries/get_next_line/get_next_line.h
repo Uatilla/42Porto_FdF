@@ -33,6 +33,6 @@ char	*ft_strjoin_mod(char *s1, char *s2); //libft
 
 char	*get_next_line(int fd);
 
-size_t	ft_strlen(const char *s); //libft
+size_t	ft_strlen_gnl(const char *s); //libft
 
 #endif
