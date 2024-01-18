@@ -33,23 +33,35 @@
 void get_map(t_fdf *data, char *file_name, int fd)
 {
     char    *line;
-    int     i;
-
-    i = 0;
+    char    **line_cleaned;
+    int     x;
+    int     y;
 
     data->mapWidth = 10;
     ft_printf("File name = %s | fd: %d\n", file_name, fd);
     
     line = get_next_line(fd);
-    while (line[i] != '\0')
+    y = 0;
+    while (line) 
     {
-        ft_printf("[%d]%c\n", i, line[i]);
-        i++;
+        x = 0;
+        //LINE WITHOUT THE \N;
+        line = ft_strtrim(line, "\n");
+        line_cleaned = ft_split(line, ' ');
+        while (line_cleaned[x] != 0)
+        {
+            ft_printf("x%dy%d%s", x, y, line_cleaned[x]);
+            x++;
+        }
+        ft_printf("\n");
+		free(line_cleaned);
+        free(line);
+        line = get_next_line(fd);
+        y++;
     }
+    free(line);
 
-
-
-
+//X MUST BE THE SAME VALUE IN ALL LINES.
 
 
 //HOW TO PUT THE CONTENT OF THIS LINE INTO A STRUCT DIRECTLY?
