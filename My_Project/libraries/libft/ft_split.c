@@ -24,7 +24,7 @@ static	int	ft_strlen_mod(const char *string, char search, int start_index)
 	return (i);
 }
 
-static	int	ft_count_words(char const *s, char c)
+static	int	ft_count_words_v0(char const *s, char c)
 {
 	int	i;
 	int	words;
@@ -80,7 +80,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	ptr_split = malloc (sizeof(char *) * (ft_count_words(s, c) + 1));
+	ptr_split = malloc (sizeof(char *) * (ft_count_words_v0(s, c) + 1));
 	if (!ptr_split)
 		return (NULL);
 	ft_fill_split(s, c, ptr_split);

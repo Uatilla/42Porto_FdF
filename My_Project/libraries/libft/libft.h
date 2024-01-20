@@ -180,4 +180,9 @@ int		ft_lstsize(t_list *lst);
 //*ft_lstmap(): Iterates the list ’lst’ and applies the function returning 
 //a new list
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/*_______________________________[NEW FUNCTIONS]_____________________________*/
+/**ft_count_words(): Count the qty of words looking at a specific sep.*/
+int ft_count_words(char *str, char sep);
+
 #endif

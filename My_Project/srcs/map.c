@@ -12,22 +12,42 @@
 
 #include "fdf.h"
 
-/*static int get_height(char *file_name, int fd)
+void    get_map_dimensions(t_fdf *data, int fd)
 {
-    int height;
+    
     char    *line;
 
+    data->mapHeight = 0;
+    data->mapWidth = 0;
     line = NULL;
     while (1)
     {
         line = get_next_line(fd);
         if (!line)
             break ;
-        height++;
+        data->mapWidth = ft_count_words(line, ' ');
+        /*CHECK ABOUT THE WIDTH IF IT'S EQUAL TO PREVIOUS
+        IF NOT FREE(LINE) AND CALL ERROR
+        
+
+
+
+
+        LOOK AT THE READ MAP AIJA FILE.
+        
+
+
+
+
+
+
+        */
+        //DO THE VALIDATION IF THEY ARE EQUAL
+        data->mapHeight++;
         free(line);
     }
-    return (height);
-}*/
+
+}
 
 
 void get_map(t_fdf *data, char *file_name, int fd)
@@ -37,8 +57,8 @@ void get_map(t_fdf *data, char *file_name, int fd)
     int     x;
     int     y;
 
-    data->mapWidth = 10;
-    ft_printf("File name = %s | fd: %d\n", file_name, fd);
+    get_map_dimensions(data, fd);
+    ft_printf("File name = %s | fd: %d\n Height: %d Width: %d", file_name, fd, data->mapHeight, data->mapWidth);
     
     line = get_next_line(fd);
     y = 0;
@@ -48,12 +68,22 @@ void get_map(t_fdf *data, char *file_name, int fd)
         //LINE WITHOUT THE \N;
         line = ft_strtrim(line, "\n");
         line_cleaned = ft_split(line, ' ');
+
         while (line_cleaned[x] != 0)
         {
-            ft_printf("x%dy%d%s", x, y, line_cleaned[x]);
+            //WORKING ON GET MAP DIMENSIONS
+
+            /*1) SHOW THIS WORDS SEPARETED (IF THE SECOND EXIST)
+            2) Z = WORD[0]
+                IF (WORD[1])
+                     COLOR = WORD[1]
+            3) X =  x;
+            */
+            //ft_printf("x%dy%d[%s]", x, y, line_cleaned[x]);
             x++;
         }
-        ft_printf("\n");
+        /*4) y = y;*/
+        ft_printf("\n\n\n\n\n\n\n");
 		free(line_cleaned);
         free(line);
         line = get_next_line(fd);
