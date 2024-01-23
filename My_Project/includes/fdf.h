@@ -16,50 +16,42 @@
 # include "../libraries/mlx/mlx.h"
 # include "../libraries/ft_printf/ft_printf.h"
 # include "../libraries/libft/libft.h"
-//# include "../libraries/get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <errno.h>
 # include <math.h>
 # include <stdio.h>
 
-
-
 typedef struct s_pixel
 {
-    int     x;
-    int     y;
-    int     z;
-    int     color;
-}           t_pixel;
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}		t_pixel;
 
-typedef struct s_img {
-    void    *img;
-    char    *addr;
-    int     imgWidth;
-    int     imgHeight;
-    int     bpp;
-    int     lineLenght;
-    int     endian;
-}           t_img;
-
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		img_width;
+	int		img_height;
+	int		bpp;
+	int		line_lenght;
+	int		endian;
+}		t_img;
 
 typedef struct s_fdf
 {
-    int     mapWidth;
-    int     mapHeight;
-    char    **mapFile;
-    t_pixel **mapMatrix;
-    void    *mlxPtr;
-    void    *winPtr;
-    t_img   mapImg;
-}           t_fdf;
+	char	**map_file;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_pixel	**map_matrix;
+	t_img	map_img;
+	int		map_width;
+	int		map_height;
+}		t_fdf;
 
-//ERROR FUNCTIONS
-int    check_input_errors(int argc, char *file);
-
-void    ft_error(char *msg);
-
-void    get_map(t_fdf *data, char *file, int fd);
-
-//int     get_height(char *file, int fd);
+int		check_input_errors(int argc, char *file);
+void	ft_error(char *msg);
+void	get_map(t_fdf *data, char *file, int fd);
 #endif

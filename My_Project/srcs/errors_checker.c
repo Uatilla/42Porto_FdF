@@ -12,22 +12,20 @@
 
 #include "fdf.h"
 
-void    ft_error(char *msg)
+void	ft_error(char *msg)
 {
-    ft_printf("ERROR: %s\n", msg);
-    exit(EXIT_FAILURE);
+	ft_printf("ERROR: %s\n", msg);
+	exit(EXIT_FAILURE);
 }
 
-int    check_input_errors(int argc, char *file)
+int	check_input_errors(int argc, char *file)
 {
-    int fd;
+	int	fd;
 
-    if (argc != 2)
-        ft_error("Input invalid!\nTry:\n ./fdf <filename.fdf>"); 
-       
-    if((fd = open(file, O_RDONLY, 0)) == -1)
-        ft_error("Failed to open the file.");
-    /*else
-        close(fd);*/
-    return (fd);
+	if (argc != 2)
+		ft_error("Input invalid!\nTry:\n ./fdf <filename.fdf>");
+	fd = open(file, O_RDONLY, 0);
+	if (fd == -1)
+		ft_error("Failed to open the file.");
+	return (fd);
 }
