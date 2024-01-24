@@ -29,3 +29,22 @@ int	check_input_errors(int argc, char *file)
 		ft_error("Failed to open the file.");
 	return (fd);
 }
+
+void	ft_free_data(t_fdf *data, int fd, char *msg)
+{
+	free(data);
+	close(fd);
+	ft_error(msg);
+}
+
+void	ft_free_matrix(t_fdf *data, int fd, int line, char *msg)
+{
+	while (line >= 0)
+	{
+		if (data->map_matrix[line])
+			free(data->map_matrix[line]);
+		line--;
+	}
+	free(data->map_matrix);
+	ft_free_data(data, fd, msg);
+}

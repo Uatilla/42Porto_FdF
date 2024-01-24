@@ -31,8 +31,8 @@ int	main(int argc, char **argv)
 	{
 		/*MAYBE I COULD HAVE A FUNCTION CALLED:
 		'PREPARE FOR CLOSE' TO FREE MEMORY AND CLOSE THE FILE.*/
-		//close(fd);
-		ft_error("Data struct were not allocated on memory.");
+		close(fd);
+		ft_error("Data structure couldn't be allocated on memory.");
 	}
 	//GETTING THE MAP.
 	get_map(data, argv[1], fd);

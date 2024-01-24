@@ -21,6 +21,7 @@
 # include <math.h>
 # include <stdio.h>
 
+# define WHITE 0x00FFFFFF
 typedef struct s_pixel
 {
 	int	x;
@@ -53,5 +54,8 @@ typedef struct s_fdf
 
 int		check_input_errors(int argc, char *file);
 void	ft_error(char *msg);
+void	ft_free_data(t_fdf *data, int fd, char *msg);
+void	ft_free_matrix(t_fdf *data, int fd, int line, char *msg);
+
 void	get_map(t_fdf *data, char *file, int fd);
 #endif
