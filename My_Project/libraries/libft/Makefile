@@ -23,7 +23,7 @@ SRCS =  ft_strtrim.c     ft_atoi.c         ft_isprint.c    ft_strlen.c\
 		ft_itoa.c        ft_split.c        ft_strjoin.c     ft_substr.c\
 		ft_strmapi.c     ft_striteri.c     ft_calloc.c      ft_strdup.c\
 		ft_memchr.c      ft_memcmp.c       ft_memset.c      \
-		ft_count_words.c \
+		ft_count_words.c ft_atoi_hex.c\
 		../get_next_line/get_next_line.c	../get_next_line/get_next_line_utils.c
 		
 BONUS = ft_lstnew.c       ft_lstsize.c      ft_lstlast.c      ft_lstiter.c\

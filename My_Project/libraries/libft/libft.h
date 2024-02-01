@@ -98,6 +98,9 @@ int		ft_tolower(int c);
 
 //ft_atoi(): Converts the initial portion of the string in int.
 int		ft_atoi(const char *nptr);
+//ft_atoi_hex(): Converts the initial portion of hex string 
+//representation in int.
+int		ft_atoi_hex(char *str);
 
 /*-----------------------------*Mandatory Part II*---------------------------*/
 
@@ -183,6 +186,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*_______________________________[NEW FUNCTIONS]_____________________________*/
 /**ft_count_words(): Count the qty of words looking at a specific sep.*/
-int ft_count_words(char *str, char sep);
+int		ft_count_words(char *str, char sep);
 
 #endif

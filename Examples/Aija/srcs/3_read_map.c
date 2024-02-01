@@ -53,6 +53,7 @@ static void	split_line(t_dot *matrix, char *line)
 		{
 			matrix[i].color = ft_atoi_hex(ft_strchr(points[i], ',') + 3);
 		}
+		printf("color: %d\n", matrix[i].color);
 		i++;
 	}
 	free_tab(points);
@@ -102,7 +103,7 @@ void	read_file(t_fdf *data)
 	while (data->map[i])
 	{
 		curr_width = ft_count_words(data->map[i]);
-		ft_printf("Line[%d] curr_width: %d\n", i, curr_width);
+		//ft_printf("Line[%d] curr_width: %d\n", i, curr_width);
 		if (prev_width == 0)
 			prev_width = curr_width;
 		else if (curr_width != prev_width)

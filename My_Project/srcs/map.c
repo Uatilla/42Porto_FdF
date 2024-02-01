@@ -46,44 +46,42 @@ void	fill_matrix(t_fdf *data, int fd)
 	char	*line;
 	char	**line_cleaned;
 	char	**z_color;
-	int		x;
-	int		y;
-	//int		z;
-	char	*color;
+	int		curr_pos;
+	int		curr_height;
 
 	line = get_next_line(fd);
-	y = 0;
-	ft_printf("Height> %d\n\n", data->map_height);
-	color = NULL;
+	curr_height = 0;
 	data->map_matrix = (t_pixel **)malloc(sizeof(t_pixel *) * data->map_height);
 	if (!data->map_matrix)
 		ft_free_data(data, fd, "Matrix couldn't be allocated on memory.");
 	while (line)
 	{
-		x = 0;
+		curr_pos = 0;
 		line = ft_strtrim(line, "\n");
 		line_cleaned = ft_split(line, ' ');
-		data->map_matrix[y] = (t_pixel *)malloc(sizeof(t_pixel) * data->map_width);
-		if (!data->map_matrix[y])
-			ft_free_matrix(data, fd, y, "Matrix line couldn't be allocated on memory.");
-		while (line_cleaned[x] != 0)
+		data->map_matrix[curr_height] = (t_pixel *)malloc(sizeof(t_pixel) * data->map_width);
+		if (!data->map_matrix[curr_height])
+			ft_free_matrix(data, fd, curr_height, "Matrix line couldn't be allocated on memory.");
+		while (line_cleaned[curr_pos] != 0)
 		{
-			data->map_matrix[y]->x = x;
-			data->map_matrix[y]->y = y;
-			z_color = ft_split(line_cleaned[x], ',');
-			data->map_matrix[y]->z = ft_atoi(z_color[0]); //atributtes z
+			data->map_matrix[curr_height]->x = curr_pos;
+			data->map_matrix[curr_height]->y = curr_height;
+			z_color = ft_split(line_cleaned[curr_pos], ',');
+			data->map_matrix[curr_height]->z = ft_atoi(z_color[0]);
 			if (z_color[1] != 0)
-				color = z_color[1]; //atributes color
-			ft_printf("color: %s\n", color);
+			{
+				printf("VVVVVVVVVVVVVVV\n");
+				data->map_matrix[curr_height]->color = ft_atoi_hex(z_color[1] + 2);
+			}
+			else
+				data->map_matrix[curr_height]->color = WHITE;
+			printf("[%d][%d]color: %d\n", curr_pos, curr_height, data->map_matrix[curr_height]->color);
 			free(z_color);
 
 			/*Pendencies:
-			1. Color on line 57 should be different and I need to attributes it on line
-			74.
-			2. Rename the x and y variable to don't messup with the structure values.
-			2. I need to remove x and y variables and run the loops with the
-			structure value.
-			3. z variable should be gone.
+			1) Understand the loop and how this printf on line 78 is working.
+			2) Run norminette
+			3) Break this code into two functions.
 			
 			
 			*/
@@ -92,10 +90,10 @@ void	fill_matrix(t_fdf *data, int fd)
 
 
 
-			x++;
+			curr_pos++;
 		}
-		ft_printf("\n\n\n");
-		y++;
+		printf("\n\n\n");
+		curr_height++;
 		free(line);
 		free(line_cleaned);
 		line = get_next_line(fd);
@@ -103,7 +101,6 @@ void	fill_matrix(t_fdf *data, int fd)
 		
 	}
 	close(fd);
-	//where to close fd?
 }
 
 void	get_map(t_fdf *data, char *file_name, int fd)

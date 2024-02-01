@@ -66,7 +66,7 @@ static	int	get_end_index(char const *s1, char const *set)
 			}
 		}
 		i++;
-	}	
+	}
 	return (end_index);
 }
 

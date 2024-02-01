@@ -10,34 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
-//#include <stdio.h>
 
-int ft_count_words(char *str, char sep)
+int	ft_count_words(char *str, char sep)
 {
-    int count;
-    int i;
+	int	count;
+	int	i;
 
-    count = 0;
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] == sep)
-            i++;
-        if (str[i] != sep && str[i] != '\0')
-        {
-            count++;
-            i++;
-        }
-        while (str[i] != sep && str[i] != '\0')
-            i++;
-    }
-    return (count);
+	count = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == sep)
+			i++;
+		if (str[i] != sep && str[i] != '\0')
+		{
+			count++;
+			i++;
+		}
+		while (str[i] != sep && str[i] != '\0')
+			i++;
+	}
+	return (count);
 }
-/*
-int main(int argc, char **argv)
-{
-    printf("%d: %s", ft_count_words(argv[1], ' '), argv[1]);
-    return (0);
-}*/
