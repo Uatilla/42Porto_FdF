@@ -22,6 +22,8 @@
 # include <stdio.h>
 
 # define WHITE 0x00FFFFFF
+# define WIDTH 1920
+# define HEIGHT 1080
 typedef struct s_pixel
 {
 	int	x;
