@@ -13,14 +13,47 @@
 #include "fdf.h"
 
 
-int	close_window(void *param)
+/*Pendencies:
+
+1) GNL is calling right, but there are 20 blocks without free.
+And 20 call on GNL, remember to delete GNL files.
+*/
+
+
+int	close_window(t_fdf *win)
 {
-	(void)param;
-	ft_printf("3) Closing the window.\n");
-	exit(0);
+	int	line;
+
+	line = win->map_height - 1;
+	if (win)
+	{
+		mlx_destroy_image(win->mlx_ptr, win->map_img.img);
+		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
+		mlx_destroy_display(win->mlx_ptr);
+		while (line >= 0)
+		{
+		if (win->map_matrix[line])
+			free(win->map_matrix[line]);
+		line--;
+		}
+		free(win->map_matrix);
+		free(win->mlx_ptr);
+		free(win);
+		exit (EXIT_SUCCESS);
+	}
+	return (0);
 }
 
-/*CONSTRUINDO A ESTRTUTURA TIMG A PARTIR DELA, DEPOIS DIRECIONANDO PARA O POINTER.*/
+int	handle_key_event(int key_pressed, void *param)
+{
+	t_fdf	*win;
+
+	win = (t_fdf *)param;
+	if (key_pressed == ESC || !win)
+		close_window(win);
+	return (0);
+}
+/*CONSTRUINDO A ESTRTUTURA T_IMG A PARTIR DELA, DEPOIS DIRECIONANDO PARA O POINTER.*/
 t_img	new_image(t_fdf data)
 {
 	t_img	img;
@@ -44,8 +77,8 @@ int	main(int argc, char **argv)
 {
 	t_fdf	*data;
 	int		fd;
-	int		i;
-	int		j;
+	//int		i;
+	//int		j;
 
 	//OPEN THE FILE
 	fd = check_input_errors(argc, argv[1]);
@@ -67,9 +100,9 @@ int	main(int argc, char **argv)
 	//PUTTING PIXELS ON THE WINDOW
 	data->map_img = new_image(*data);
 
-	//PRINTING THE STRUCTURE
-	i = 0;
-	while(data->map_matrix[i] != 0)
+	//PRINTING THE STRUCTURE HAS AN INVALID READ LEAK
+	/*i = 0;
+	while(data->map_matrix[i])
 	{
 		j = 0;
 		while (j < data->map_width)
@@ -80,18 +113,20 @@ int	main(int argc, char **argv)
 		}
 		printf("\n\n");
 		i++;
-	}
+	}*/
 
 	/*PUTTING AN IMAGE EVERY MLX LOOP EXECUTION*/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map_img.img, 0, 0);
 
-	//Closing in a dirty way.
-	mlx_hook(data->win_ptr, 17, 0L, close_window, data->mlx_ptr);
-	mlx_hook(data->win_ptr, 2, 1L<<0, close_window, &data->map_img);
+	/*IF A SPECIFIC SIGNAL WERE FOUND CALL THE CLOSE WINDOW FUNCTION*/
+	mlx_hook(data->win_ptr, 17, 0L, close_window, data);
+	mlx_key_hook(data->win_ptr, &handle_key_event, data);
+	
 	//Keep the file running.
 	mlx_loop(data->mlx_ptr);
-	close(fd);
-	close(fd);
-	close(fd);
-	return (0);
+	//close(fd);
+	free(data);
+	/*ft_free_matrix(data, fd, data->map_height, \
+			"Closing the program");*/
+	exit(EXIT_SUCCESS);
 }

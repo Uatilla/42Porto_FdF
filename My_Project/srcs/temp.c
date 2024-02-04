@@ -10,22 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-/*Pendencies:
-
-1) Função de encerramento, para fechar todas as linhas 
-da map_matrix, a map_matrix no geral e a data.
-2) Free (line) at the end of fill_matrix function? when the line exists but
-the map_matrix couldn't be allocated, how to deal?
-
-*/
-
-
-
-
-
-/*BACKUP BEFORE SPLIT THE FUNCTION FILL_MATRIX:
+/*BACKUP BEFORE SPLIT THE FUNCTION:
 
 void	fill_matrix(t_fdf *data, int fd)
 {
@@ -77,48 +62,21 @@ void	fill_matrix(t_fdf *data, int fd)
 	}
 	close(fd);
 }
+
 */
 
-
-/* BACKUP OF FILL_DOTS BECAUSE IT'S ADDING VALUE ONLY ON THE FIRST *T_DOT ELEMENT
-
-void	fill_dots(t_fdf *data, char **line_cleaned, int curr_height)
+/*int	close_window(t_fdf *win)
 {
-	int		curr_pos;
-	char	**z_color;
-
-	curr_pos = 0;
-	while (line_cleaned[curr_pos] != 0)
+	if (win)
 	{
-		data->map_matrix[curr_height]->x = curr_pos;
-		data->map_matrix[curr_height]->y = curr_height;
-		z_color = ft_split(line_cleaned[curr_pos], ',');
-		data->map_matrix[curr_height]->z = ft_atoi(z_color[0]);
-		if (z_color[1] != 0)
-		{
-			data->map_matrix[curr_height]->color = \
-			ft_atoi_hex(z_color[1] + 2);
-		}
-		else
-			data->map_matrix[curr_height]->color = WHITE;
-		free(z_color);
-		curr_pos++;
+		mlx_destroy_image(win->mlx_ptr, win->map_img.img);
+		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
+		mlx_destroy_display(win->mlx_ptr);
+		free(win->mlx_ptr);
+		free(win);
+		exit (EXIT_SUCCESS);
 	}
-}
-*/
+	return (0);
+}*/
 
-/*RUNNING THE STRUCTURE: ONLY FOR TEST PURPOSES
-	i = 0;
-	while(data->map_matrix[i] != 0)
-	{
-		j = 0;
-		while (j < data->map_width)
-		{
-			printf("X:%d Y:%d Z:%d color:%d\n", data->map_matrix[i][j].x, \
-			data->map_matrix[i][j].y, data->map_matrix[i][j].z, data->map_matrix[i][j].color);
-			j++;
-		}
-		printf("\n\n");
-		i++;
-	}
-*/
+

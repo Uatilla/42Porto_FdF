@@ -39,7 +39,7 @@ INCLUDES	=	includes
 
 
 # Flags
-CFLAGS		= -Wall -Wextra -Werror -g 
+CFLAGS		= -Wall -Wextra -Werror -g -O0
 MLXFLAGS	= -lmlx -lXext -lX11 -lm
 MK_FLAG		= --no-print-directory
 

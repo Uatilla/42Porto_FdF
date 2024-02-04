@@ -24,6 +24,7 @@
 # define WHITE 0x00FFFFFF
 # define WIDTH 1920
 # define HEIGHT 1080
+# define ESC 65307
 typedef struct s_pixel
 {
 	int	x;

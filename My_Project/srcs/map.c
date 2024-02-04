@@ -12,11 +12,28 @@
 
 #include "fdf.h"
 
+void	free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 void	get_map_dimensions(t_fdf *data, int fd)
 {
 	char	*line;
 	int		prev_map_width;
+	int		i;
 
+	i = 0;
 	data->map_height = 0;
 	data->map_width = 0;
 	prev_map_width = 0;
@@ -24,6 +41,8 @@ void	get_map_dimensions(t_fdf *data, int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
+		ft_printf("[%d]GMD_GNL call\n", i);
+		i++;
 		if (!line)
 			break ;
 		line = ft_strtrim(line, "\n");
@@ -53,38 +72,41 @@ void	fill_dots(t_pixel *dot, char **line_cleaned, int curr_height)
 		dot[curr_pos].y = curr_height;
 		z_color = ft_split(line_cleaned[curr_pos], ',');
 		dot[curr_pos].z = ft_atoi(z_color[0]);
-		if (z_color[1] != 0)
+		if (z_color[1])
 		{
 			dot[curr_pos].color = \
 			ft_atoi_hex(z_color[1] + 2);
 		}
 		else
 			dot[curr_pos].color = WHITE;
-		free(z_color);
+		free_split(z_color);
 		curr_pos++;
 	}
 }
 
-/*printf("X:%d Y:%d color:%d\n", \
-data->map_matrix[curr_height]->x, \
-data->map_matrix[curr_height]->y, \
-data->map_matrix[curr_height]->color);*/
 void	fill_matrix(t_fdf *data, int fd)
 {
 	char	*line;
 	char	**line_cleaned;
 	int		curr_height;
+	int		i;
 
+	i = 0;
 	line = get_next_line(fd);
+	ft_printf("[%d]FM_GNL call\n", i);
+	i++;
 	curr_height = 0;
+	//ft_printf("Allocate memory for %d lines\n", data->map_height);
 	data->map_matrix = (t_pixel **)malloc(sizeof(t_pixel *) * data->map_height);
 	if (!data->map_matrix)
 		ft_free_data(data, fd, "Matrix couldn't be allocated on memory.");
 	while (line)
 	{
+		//ft_printf("Line[%d]: %s\n", curr_height, line);
 		line = ft_strtrim(line, "\n");
 		line_cleaned = ft_split(line, ' ');
 		free(line);
+		//ft_printf("On line %d, allocate memory for %d positions\n", curr_height, data->map_width);
 		data->map_matrix[curr_height] = \
 		(t_pixel *)malloc(sizeof(t_pixel) * data->map_width);
 		if (!data->map_matrix[curr_height])
@@ -92,11 +114,12 @@ void	fill_matrix(t_fdf *data, int fd)
 			"Matrix line couldn't be allocated on memory.");
 		fill_dots(data->map_matrix[curr_height], line_cleaned, curr_height);
 		curr_height++;
-		free(line_cleaned);
+		free_split(line_cleaned);
 		line = get_next_line(fd);
+		ft_printf("[%d]GNL call\n", i);
+		i++;
 	}
 	close(fd);
-	//free(line)????
 }
 
 void	get_map(t_fdf *data, char *file_name, int fd)
