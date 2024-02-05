@@ -77,29 +77,27 @@ int	main(int argc, char **argv)
 {
 	t_fdf	*data;
 	int		fd;
-	//int		i;
-	//int		j;
+	int		i;
+	int		j;
 
 	//OPEN THE FILE
 	fd = check_input_errors(argc, argv[1]);
 	data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!data)
 	{
-		/*MAYBE I COULD HAVE A FUNCTION CALLED:
-		'PREPARE FOR CLOSE' TO FREE MEMORY AND CLOSE THE FILE.*/
 		close(fd);
 		ft_error("Data structure couldn't be allocated on memory.");
 	}
+	ft_memset(data, 0, sizeof(t_fdf));
 	//GETTING THE MAP IN THE STRUCTURE.
 	get_map(data, argv[1], fd);
-
 	//STARTING THE PROGRAM THEN OPENING THE WINDOW
 	start_program(data, "fdf");
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (1);	
 	//PUTTING PIXELS ON THE WINDOW
 	data->map_img = new_image(*data);
-
+	
 	//PRINTING THE STRUCTURE HAS AN INVALID READ LEAK
 	/*i = 0;
 	while(data->map_matrix[i])
@@ -117,16 +115,24 @@ int	main(int argc, char **argv)
 
 	/*PUTTING AN IMAGE EVERY MLX LOOP EXECUTION*/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map_img.img, 0, 0);
-
 	/*IF A SPECIFIC SIGNAL WERE FOUND CALL THE CLOSE WINDOW FUNCTION*/
 	mlx_hook(data->win_ptr, 17, 0L, close_window, data);
 	mlx_key_hook(data->win_ptr, &handle_key_event, data);
-	
 	//Keep the file running.
 	mlx_loop(data->mlx_ptr);
-	//close(fd);
-	free(data);
-	/*ft_free_matrix(data, fd, data->map_height, \
-			"Closing the program");*/
+	/*CALL TO CLOSE*/
+	/*height = data->map_height - 1;
+	if (data)
+	{
+		while (height >= 0)
+		{
+		if (data->map_matrix[height])
+			free(data->map_matrix[height]);
+		height--;
+		}
+		free(data->map_matrix);
+		free(data);
+		exit (EXIT_SUCCESS);
+	}*/
 	exit(EXIT_SUCCESS);
 }

@@ -30,32 +30,27 @@ void	free_split(char **str)
 void	get_map_dimensions(t_fdf *data, int fd)
 {
 	char	*line;
+	char	*line_cleaned;
 	int		prev_map_width;
-	int		i;
 
-	i = 0;
-	data->map_height = 0;
-	data->map_width = 0;
 	prev_map_width = 0;
-	line = NULL;
 	while (1)
 	{
 		line = get_next_line(fd);
-		ft_printf("[%d]GMD_GNL call\n", i);
-		i++;
 		if (!line)
 			break ;
-		line = ft_strtrim(line, "\n");
+		line_cleaned = ft_strtrim(line, "\n");
+		free(line);
 		if (prev_map_width == 0)
-			prev_map_width = ft_count_words(line, ' ');
+			prev_map_width = ft_count_words(line_cleaned, ' ');
 		else
 		{
-			data->map_width = ft_count_words(line, ' ');
+			data->map_width = ft_count_words(line_cleaned, ' ');
 			if (prev_map_width != data->map_width)
 				ft_free_data(data, fd, "Lines with different witdh.");
 		}
 		data->map_height++;
-		free(line);
+		free(line_cleaned);
 	}
 	close(fd);
 }
@@ -87,26 +82,23 @@ void	fill_dots(t_pixel *dot, char **line_cleaned, int curr_height)
 void	fill_matrix(t_fdf *data, int fd)
 {
 	char	*line;
+	char	*line_to_clean;
 	char	**line_cleaned;
 	int		curr_height;
-	int		i;
 
-	i = 0;
-	line = get_next_line(fd);
-	ft_printf("[%d]FM_GNL call\n", i);
-	i++;
 	curr_height = 0;
-	//ft_printf("Allocate memory for %d lines\n", data->map_height);
 	data->map_matrix = (t_pixel **)malloc(sizeof(t_pixel *) * data->map_height);
 	if (!data->map_matrix)
 		ft_free_data(data, fd, "Matrix couldn't be allocated on memory.");
-	while (line)
+	while (1)
 	{
-		//ft_printf("Line[%d]: %s\n", curr_height, line);
-		line = ft_strtrim(line, "\n");
-		line_cleaned = ft_split(line, ' ');
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		line_to_clean = ft_strtrim(line, "\n");
 		free(line);
-		//ft_printf("On line %d, allocate memory for %d positions\n", curr_height, data->map_width);
+		line_cleaned = ft_split(line_to_clean, ' ');
+		free(line_to_clean);
 		data->map_matrix[curr_height] = \
 		(t_pixel *)malloc(sizeof(t_pixel) * data->map_width);
 		if (!data->map_matrix[curr_height])
@@ -115,19 +107,13 @@ void	fill_matrix(t_fdf *data, int fd)
 		fill_dots(data->map_matrix[curr_height], line_cleaned, curr_height);
 		curr_height++;
 		free_split(line_cleaned);
-		line = get_next_line(fd);
-		ft_printf("[%d]GNL call\n", i);
-		i++;
 	}
 	close(fd);
 }
 
 void	get_map(t_fdf *data, char *file_name, int fd)
 {
-
 	get_map_dimensions(data, fd);
-	/*ft_printf("File name = %s | fd: %d\n Height: %d Width: %d\n", \
-	file_name, fd, data->map_height, data->map_width);*/
 	fd = open(file_name, O_RDONLY, 0);
 	if (fd == -1)
 		ft_free_data(data, fd, "Failed to open the map.");
