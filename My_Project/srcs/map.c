@@ -79,10 +79,21 @@ void	fill_dots(t_pixel *dot, char **line_cleaned, int curr_height)
 	}
 }
 
+char	**clean_line(char *line)
+{
+	char	*line_to_clean;
+	char	**line_cleaned;
+
+	line_to_clean = ft_strtrim(line, "\n");
+	free(line);
+	line_cleaned = ft_split(line_to_clean, ' ');
+	free(line_to_clean);
+	return (line_cleaned);
+}
+
 void	fill_matrix(t_fdf *data, int fd)
 {
 	char	*line;
-	char	*line_to_clean;
 	char	**line_cleaned;
 	int		curr_height;
 
@@ -95,10 +106,7 @@ void	fill_matrix(t_fdf *data, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		line_to_clean = ft_strtrim(line, "\n");
-		free(line);
-		line_cleaned = ft_split(line_to_clean, ' ');
-		free(line_to_clean);
+		line_cleaned = clean_line(line);
 		data->map_matrix[curr_height] = \
 		(t_pixel *)malloc(sizeof(t_pixel) * data->map_width);
 		if (!data->map_matrix[curr_height])

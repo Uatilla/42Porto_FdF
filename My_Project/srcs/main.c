@@ -99,7 +99,7 @@ int	main(int argc, char **argv)
 	data->map_img = new_image(*data);
 	
 	//PRINTING THE STRUCTURE HAS AN INVALID READ LEAK
-	/*i = 0;
+	i = 0;
 	while(data->map_matrix[i])
 	{
 		j = 0;
@@ -111,7 +111,7 @@ int	main(int argc, char **argv)
 		}
 		printf("\n\n");
 		i++;
-	}*/
+	}
 
 	/*PUTTING AN IMAGE EVERY MLX LOOP EXECUTION*/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map_img.img, 0, 0);
