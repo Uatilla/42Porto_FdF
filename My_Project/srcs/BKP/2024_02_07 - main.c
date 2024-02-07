@@ -15,7 +15,8 @@
 
 /*Pendencies:
 
-1) Understand how to put pixels on the screen.
+1) GNL is calling right, but there are 20 blocks without free.
+And 20 call on GNL, remember to delete GNL files.
 */
 
 
@@ -76,8 +77,8 @@ int	main(int argc, char **argv)
 {
 	t_fdf	*data;
 	int		fd;
-	int		i;
-	int		j;
+	//int		i;
+	//int		j;
 
 	//OPEN THE FILE
 	fd = check_input_errors(argc, argv[1]);
@@ -98,7 +99,7 @@ int	main(int argc, char **argv)
 	data->map_img = new_image(*data);
 	
 	//PRINTING THE STRUCTURE HAS AN INVALID READ LEAK
-	i = 0;
+	/*i = 0;
 	while(data->map_matrix[i])
 	{
 		j = 0;
@@ -110,9 +111,8 @@ int	main(int argc, char **argv)
 		}
 		printf("\n\n");
 		i++;
-	}
+	}*/
 
-	draw_map(data);
 	/*PUTTING AN IMAGE EVERY MLX LOOP EXECUTION*/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map_img.img, 0, 0);
 	/*IF A SPECIFIC SIGNAL WERE FOUND CALL THE CLOSE WINDOW FUNCTION*/

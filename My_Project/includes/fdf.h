@@ -46,7 +46,6 @@ typedef struct s_img
 
 typedef struct s_fdf
 {
-	char	**map_file;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_pixel	**map_matrix;
@@ -55,10 +54,15 @@ typedef struct s_fdf
 	int		map_height;
 }		t_fdf;
 
+/*Error Handling*/
 int		check_input_errors(int argc, char *file);
 void	ft_error(char *msg);
 void	ft_free_data(t_fdf *data, int fd, char *msg);
 void	ft_free_matrix(t_fdf *data, int fd, int line, char *msg);
 
+/*Map Reading*/
 void	get_map(t_fdf *data, char *file, int fd);
+
+/*Map Drawing*/
+void	draw_map(t_fdf *data);
 #endif
