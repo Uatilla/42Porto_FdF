@@ -59,7 +59,7 @@ t_img	new_image(t_fdf data)
 
 	img.img = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
 	if (img.img == NULL)
-		ft_error("Failed to create an image.");
+		ft_error("Failed to create the image.");
 	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_lenght, &img.endian);
 	img.img_width = WIDTH;
 	img.img_height = HEIGHT;
@@ -94,7 +94,7 @@ int	main(int argc, char **argv)
 	start_program(data, "fdf");
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (1);	
-	//PUTTING PIXELS ON THE WINDOW
+	//STARTING A NEW WINDOW
 	data->map_img = new_image(*data);
 	
 	//PRINTING THE STRUCTURE HAS AN INVALID READ LEAK
@@ -111,9 +111,8 @@ int	main(int argc, char **argv)
 		printf("\n\n");
 		i++;
 	}
-
 	draw_map(data);
-	/*PUTTING AN IMAGE EVERY MLX LOOP EXECUTION*/
+	/*PUTTING THE IMAGE IN MLX LOOP EXECUTION*/
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map_img.img, 0, 0);
 	/*IF A SPECIFIC SIGNAL WERE FOUND CALL THE CLOSE WINDOW FUNCTION*/
 	mlx_hook(data->win_ptr, 17, 0L, close_window, data);
