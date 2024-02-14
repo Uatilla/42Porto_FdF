@@ -65,26 +65,12 @@ int	main(int argc, char **argv)
 	if (!data)
 		ft_error("Failed to create program.");
 	get_map(data, argv[1]);
-	//On December 23, 2023
-
-
-
-
 	read_file(data);
-	//Read: On December 25, 2023
-	//Done: On February 03, 2024
-
-
 	new_program(data, "fdf");
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (1);
 	data->img = new_img(*data);
-	//On December 26, 2023
-
-
 	draw_map(data);
-	//Put it for the end of the program!
-	
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	mlx_hook(data->win_ptr, 17, 0, exit_window, data);
 	mlx_key_hook(data->win_ptr, &handle_key_event, data);

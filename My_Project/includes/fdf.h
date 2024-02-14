@@ -65,4 +65,5 @@ void	get_map(t_fdf *data, char *file, int fd);
 
 /*Map Drawing*/
 void	draw_map(t_fdf *data);
+void    draw_line(t_fdf *data, t_pixel *curr_pos, t_pixel *next_pos);
 #endif

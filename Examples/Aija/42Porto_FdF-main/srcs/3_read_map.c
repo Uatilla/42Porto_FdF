@@ -51,9 +51,12 @@ static void	split_line(t_dot *matrix, char *line)
 			matrix[i].color = WHITE;
 		else
 		{
+			printf("\t\t\t");
 			matrix[i].color = ft_atoi_hex(ft_strchr(points[i], ',') + 3);
 		}
-		printf("color: %d\n", matrix[i].color);
+		//printf("[%d]color: %d\n", i, matrix[i].color);
+		printf("X:%d Y:%d color:%d\n", i, matrix[i].y, matrix[i].color);
+
 		i++;
 	}
 	free_tab(points);
@@ -68,7 +71,6 @@ void	get_map(t_fdf *data, char *file_name)
 
 	i = 0;
 	data->height = get_height(file_name);
-	//ft_printf("Height: %d\n\n", data->height);
 	data->map = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map)
 		ft_error("Memory allocation failed for char array map.");
@@ -103,7 +105,6 @@ void	read_file(t_fdf *data)
 	while (data->map[i])
 	{
 		curr_width = ft_count_words(data->map[i]);
-		//ft_printf("Line[%d] curr_width: %d\n", i, curr_width);
 		if (prev_width == 0)
 			prev_width = curr_width;
 		else if (curr_width != prev_width)
@@ -112,6 +113,7 @@ void	read_file(t_fdf *data)
 		if (!data->z_matrix[i])
 			ft_map_error(data, i, "Memory allocation failed for t_dot line");
 		split_line(data->z_matrix[i], data->map[i]);
+		printf("\n\n\n");
 		i++;
 	}
 	free_tab(data->map);

@@ -14,7 +14,7 @@
 
 void	ft_error(char *msg)
 {
-	printf("Error : %s\n", msg);
+	ft_printf("Error : %s\n", msg);
 	exit(EXIT_FAILURE);
 }
 

@@ -26,6 +26,8 @@ static void	draw_horizontal_lines(t_fdf *data, int x, int y)
 	b.y = y;
 	b.z = data->z_matrix[y][x + 1].z;
 	b.color = data->z_matrix[y][x + 1].color;
+	//printf("Current\t X:%d Y:%d Z:%d Color:%d\n", a.x, a.y, a.z, a.color);
+	//printf("Next\t X:%d Y:%d Z:%d Color:%d\n", b.x, b.y, b.z, b.color);
 	draw_line(data, &a, &b);
 }
 

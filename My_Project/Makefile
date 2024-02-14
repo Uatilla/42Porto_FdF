@@ -44,7 +44,7 @@ MLXFLAGS	= -lmlx -lXext -lX11 -lm
 MK_FLAG		= --no-print-directory
 
 # Files
-SRCS		=	main.c errors_checker.c map.c draw_map.c
+SRCS		=	main.c errors_checker.c map.c draw_map.c draw_lines.c
 OBJS		=	$(SRCS:%.c=$(OBJS_DIR)/%.o)
 LIBMLX		=	./libraries/mlx/libmlx.a
 FT_PRINTF	=	./libraries/ft_printf/libftprintf.a
