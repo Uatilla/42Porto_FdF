@@ -25,6 +25,18 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define ESC 65307
+
+typedef struct s_bresenham
+{
+	int	x0;
+	int	y0;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+}		t_bresenham;
+
 typedef struct s_pixel
 {
 	int	x;
@@ -66,4 +78,7 @@ void	get_map(t_fdf *data, char *file, int fd);
 /*Map Drawing*/
 void	draw_map(t_fdf *data);
 void    draw_line(t_fdf *data, t_pixel *curr_pos, t_pixel *next_pos);
+
+/*Reescaling Map*/
+void	reescaling_map(t_fdf *data, t_pixel *curr_pos, t_pixel *next_pos);
 #endif

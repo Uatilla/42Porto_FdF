@@ -12,17 +12,6 @@
 
 #include "fdf.h"
 
-void	put_pixel_img(t_img img, int x, int y, int color)
-{
-	char	*pixel;
-
-	if (x >= 0 && y >= 0 && x < img.img_width && y < img.img_height)
-	{
-		pixel = img.addr + ((y * img.line_lenght) + (x * (img.bpp / 8)));
-		*(unsigned int *) pixel = color;
-	}
-}
-
 static void	prep_horizon_lines(t_fdf *data, int x, int y)
 {
 	t_pixel	curr_pos;
@@ -52,8 +41,7 @@ static void	prep_vert_lines(t_fdf *data, int x, int y)
 	next_pos.y = data->map_matrix[y + 1][x].y;
 	next_pos.z = data->map_matrix[y + 1][x].z;
 	next_pos.color = data->map_matrix[y + 1][x].color;
-	printf("Current\t X:%d Y:%d Z:%d Color:%d\n", curr_pos.x, curr_pos.y, curr_pos.z, curr_pos.color);
-	printf("Next\t X:%d Y:%d Z:%d Color:%d\n", next_pos.x, next_pos.y, next_pos.z, next_pos.color);
+	draw_line(data, &curr_pos, &next_pos);
 }
 
 void    draw_map(t_fdf *data)
