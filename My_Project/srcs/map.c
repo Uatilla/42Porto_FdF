@@ -12,21 +12,6 @@
 
 #include "fdf.h"
 
-void	free_split(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-		return ;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 void	get_map_dimensions(t_fdf *data, int fd)
 {
 	char	*line;

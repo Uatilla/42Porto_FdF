@@ -71,6 +71,7 @@ int		check_input_errors(int argc, char *file);
 void	ft_error(char *msg);
 void	ft_free_data(t_fdf *data, int fd, char *msg);
 void	ft_free_matrix(t_fdf *data, int fd, int line, char *msg);
+void	free_split(char **str);
 
 /*Map Reading*/
 void	get_map(t_fdf *data, char *file, int fd);

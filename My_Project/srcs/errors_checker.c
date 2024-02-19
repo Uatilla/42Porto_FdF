@@ -18,6 +18,21 @@ void	ft_error(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+void	free_split(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 int	check_input_errors(int argc, char *file)
 {
 	int	fd;
