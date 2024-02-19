@@ -32,8 +32,10 @@ void	get_map_dimensions(t_fdf *data, int fd)
 	char	*line;
 	char	*line_cleaned;
 	int		prev_map_width;
+	int		read_error;
 
 	prev_map_width = 0;
+	read_error = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -47,11 +49,13 @@ void	get_map_dimensions(t_fdf *data, int fd)
 		{
 			data->map_width = ft_count_words(line_cleaned, ' ');
 			if (prev_map_width != data->map_width)
-				ft_free_data(data, fd, "Lines with different witdh.");
+				read_error = 1;
 		}
 		data->map_height++;
 		free(line_cleaned);
 	}
+	if (read_error == 1)
+		ft_free_data(data, fd, "Lines with different witdh.");
 	close(fd);
 }
 
