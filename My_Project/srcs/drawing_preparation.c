@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   drawing_preparation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uviana-a <uviana-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 19:54:36 by uviana-a          #+#    #+#             */
-/*   Updated: 2024/02/07 19:54:38 by uviana-a         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:11:12 by uviana-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	prep_vert_lines(t_fdf *data, int x, int y)
 	draw_line(data, &curr_pos, &next_pos);
 }
 
-void    draw_map(t_fdf *data)
+void	draw_map(t_fdf *data)
 {
-    int	x;
+	int	x;
 	int	y;
 
 	y = 0;
@@ -62,8 +62,6 @@ void    draw_map(t_fdf *data)
 				prep_vert_lines(data, x, y);
 			x++;
 		}
-		//DO I NEED TO FREE EACH MATRIX[I] LINE AFTER THE PREVIOUS LOOP?
 		y++;
 	}
-	//DO I NEED TO FREE THE MATRIX AFTER THE BIGGER LOOP?
 }

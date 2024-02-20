@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   map_preparation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uviana-a <uviana-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:06:10 by uviana-a          #+#    #+#             */
-/*   Updated: 2024/01/12 22:06:13 by uviana-a         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:11:36 by uviana-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	get_map_dimensions(t_fdf *data, int fd)
 	char	*line;
 	char	*line_cleaned;
 	int		prev_map_width;
-	int		read_error;
+	int		width_error;
 
 	prev_map_width = 0;
-	read_error = 0;
+	width_error = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -31,15 +31,12 @@ void	get_map_dimensions(t_fdf *data, int fd)
 		if (prev_map_width == 0)
 			prev_map_width = ft_count_words(line_cleaned, ' ');
 		else
-		{
-			data->map_width = ft_count_words(line_cleaned, ' ');
-			if (prev_map_width != data->map_width)
-				read_error = 1;
-		}
+			width_error = check_width(data, line_cleaned, \
+			prev_map_width, width_error);
 		data->map_height++;
 		free(line_cleaned);
 	}
-	if (read_error == 1)
+	if (width_error == 1)
 		ft_free_data(data, fd, "Lines with different witdh.");
 	close(fd);
 }
