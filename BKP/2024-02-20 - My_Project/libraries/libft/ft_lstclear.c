@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uviana-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 20:52:31 by uviana-a          #+#    #+#             */
-/*   Updated: 2023/05/31 20:52:34 by uviana-a         ###   ########.fr       */
+/*   Created: 2023/04/30 20:32:51 by uviana-a          #+#    #+#             */
+/*   Updated: 2023/04/30 20:32:53 by uviana-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstclear(t_list **lst, void (*del)(void	*))
 {
-	char	*file;
-	int		i;
-	int		fd;
-	char	*line;
+	t_list	*aux;
 
-	i = 0;
-	file = "elem-col.fdf";
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	if (lst == NULL)
+		return ;
+	while (*lst != NULL)
 	{
-		printf("ERROR: the file couldn't be opened!\n");
-		return (1);
+		aux = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = aux;
 	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s", line);
-		free (line);
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-	}
-	close(fd);
-	return (0);
+	lst = NULL;
 }

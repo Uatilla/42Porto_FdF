@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uviana-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 20:52:31 by uviana-a          #+#    #+#             */
-/*   Updated: 2023/05/31 20:52:34 by uviana-a         ###   ########.fr       */
+/*   Created: 2023/04/21 14:46:26 by uviana-a          #+#    #+#             */
+/*   Updated: 2023/04/21 14:46:28 by uviana-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*file;
-	int		i;
-	int		fd;
-	char	*line;
+	void	*ptr_strjoin;
+	size_t	i;
+	size_t	j;
 
+	ptr_strjoin = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ptr_strjoin)
+		return (NULL);
 	i = 0;
-	file = "elem-col.fdf";
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	while (s1[i])
 	{
-		printf("ERROR: the file couldn't be opened!\n");
-		return (1);
+		((char *)ptr_strjoin)[i] = s1[i];
+		i++;
 	}
-	line = get_next_line(fd);
-	while (line)
+	j = 0;
+	while (s2[j])
 	{
-		printf("%s", line);
-		free (line);
-		line = get_next_line(fd);
-		if (!line)
-			break ;
+		((char *)ptr_strjoin)[i] = s2[j];
+		i++;
+		j++;
 	}
-	close(fd);
-	return (0);
+	((char *)ptr_strjoin)[i] = '\0';
+	return ((char *)ptr_strjoin);
 }

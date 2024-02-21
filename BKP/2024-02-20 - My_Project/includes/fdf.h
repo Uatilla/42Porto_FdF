@@ -66,12 +66,6 @@ typedef struct s_fdf
 	int		map_height;
 }		t_fdf;
 
-/*Window Management*/
-void	start_program(t_fdf *data, char *str);
-int		close_window(t_fdf *win);
-int		handle_key_event(int key_pressed, void *param);
-t_img	new_image(t_fdf data);
-
 /*Error Handling*/
 int		check_input_errors(int argc, char *file);
 void	ft_error(char *msg);
@@ -79,14 +73,12 @@ void	ft_free_data(t_fdf *data, int fd, char *msg);
 void	ft_free_matrix(t_fdf *data, int fd, int line, char *msg);
 void	free_split(char **str);
 
-/*Map Preparation*/
+/*Map Reading*/
 void	get_map(t_fdf *data, char *file, int fd);
-int		check_width(t_fdf *data, char *line_cleaned, int prev_map_width, \
-				int width_error);
 
 /*Map Drawing*/
 void	draw_map(t_fdf *data);
-void	draw_line(t_fdf *data, t_pixel *curr_pos, t_pixel *next_pos);
+void    draw_line(t_fdf *data, t_pixel *curr_pos, t_pixel *next_pos);
 
 /*Reescaling Map*/
 void	reescaling_map(t_fdf *data, t_pixel *curr_pos, t_pixel *next_pos);

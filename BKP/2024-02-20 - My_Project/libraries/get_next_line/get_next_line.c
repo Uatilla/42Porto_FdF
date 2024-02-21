@@ -61,7 +61,7 @@ static	char	*ft_clean_line(char *line_to_clean)
 	{
 		line_cleaned[i] = line_to_clean[i];
 		i++;
-	}
+	}	
 	line_cleaned[i] = '\0';
 	return (line_cleaned);
 }

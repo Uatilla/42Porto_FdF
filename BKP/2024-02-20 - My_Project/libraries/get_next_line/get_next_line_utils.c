@@ -50,8 +50,7 @@ char	*ft_strjoin_mod(char *s1, char *s2)
 		s1 = malloc(sizeof(char) * 1);
 		s1[0] = '\0';
 	}
-	join = (char *)malloc(sizeof(char) * (ft_strlen_gnl(s1) + \
-			ft_strlen_gnl(s2) + 1));
+	join = (char *)malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (!join)
 		return (NULL);
 	while (s1[++i] != '\0')

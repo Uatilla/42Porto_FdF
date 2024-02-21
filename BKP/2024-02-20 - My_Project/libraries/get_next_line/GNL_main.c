@@ -27,7 +27,7 @@ int	main(void)
 		printf("ERROR: the file couldn't be opened!\n");
 		return (1);
 	}
-	line = get_next_line(fd);
+	line = get_next_line(fd);	
 	while (line)
 	{
 		printf("%s", line);
