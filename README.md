@@ -2,38 +2,33 @@
 **FdF Wireframe model** is a C project from the 42 School Common Core Program. The main goal of this project is to build a program that can receive an text input as a matrix and convert it to a graphical wireframe representation using the coordinates of each matrix value (x, y, z and color). Showing the result in a isometric perspective to be able to demonstrate the 3d perspective.
 For more detailed information, look at the [**subject of this project**](https://github.com/Uatilla/42Porto_FdF/blob/main/Project%20Files/FdF_en.subject.pdf).
 
-[![MasterHead](https://github.com/Uatilla/42Porto_FdF/tree/main)](https://www.linkedin.com/in/uatilla/)
+## How to use it
 
-
-## Getting Started
-
+### Getting Started
+[![MasterHead](https://github.com/Uatilla/42Porto_FdF/assets/112968804/63113d40-0bba-4d57-90c2-1c9babd6d0c4)](https://www.linkedin.com/in/uatilla/)
 You just need to download or clone this git repository.
 `git@github.com:Uatilla/42Porto_FdF.git`
 
-## How to use it
+### Dependencies
 
+To properly run this code you must have the MiniLibX files in the right place, so first you need to **extract the file Source Files/minilibx-linux.tgz to the folder: Project Files/libraries**.
+Once done, rename the folder from minilibx-linux to mlx, to know more about what is the MiniLibX library and how it works, please go to this link:  [**42 Docs**](https://harm-smits.github.io/42docs/libs/minilibx/introduction.html
+).
+Now you can run the program properly, using the following steps:
+* Go to the folder Project Files.
 * Run `make` to build all necessary files.
-* Then run `./push_swap <*Elements*>`, you should replace *Elements* by any amount of integer negative or positive numbers, since they don’t repeat in the list, for example:
-* `./push_swap 5 3 -8 1 0 7`.
-* To delete all .o files: `make clean`.
-* To delete all .o files and library: `make fclean`.
-* To delete all .o files, library, and rebuild the Mandatory .o files: `make re`.
+* Then run `./fdf ./maps/<select one map>`, you should select one map from the files available in the **maps folder**, for example:
+* `./fdf ./maps/t2.fdf`.
+* The result must the following:
+  ![Screenshot from 2024-05-31 12-06-22](https://github.com/Uatilla/42Porto_FdF/assets/112968804/10a36a73-08db-45fb-b9ee-218f312a641a)
+
+* Once done, the program will run and the map will be show in a isometric perspective, you can now close pressing ESC or clicking on the close icon (X) on the window.
+* To delete all files built except the library you can run: `make clean`.
+* To delete all files built including the library you can run: `make fclean`.
+* To delete all .o files, library, and rebuild the files to run the program again, run: `make re`.
 
 
 ## Rules
-
-**List of Movements**
-
-Below there is the list of movements allowed:
-
-![image](https://github.com/Uatilla/42Porto_Push_swap/assets/112968804/159c5438-0494-486e-8583-a360f7eaf2fd)
-
-
-**Grades**
-
-The evaluation grades are based on the number of movements needed to order the list:
-
-![image](https://github.com/Uatilla/42Porto_Push_swap/assets/112968804/86e9fb58-2fe3-4b74-9b87-d7415c44b49b)
 
 **Norminette:**
 
@@ -41,29 +36,11 @@ The Norminette is a tool provided by 42 Network to check whether the source cod
 
 Here is a [link](https://42.nauman.cc/2023/06/01/getting-started-norminette/) to more details about what is evaluated by the Norminette tool.
 
-
-## Dependencies
-
-## How my project works
-
-![Algorithm flowchart example](https://github.com/Uatilla/42Porto_Push_swap/assets/112968804/3a5fa5bb-1acf-4b58-a729-43c95cb1bc4f)
-
-
-To set up the structure, various methods can be applied, such as using an array of integers or a singly linked list. For this project, I chose a **double-linked list**, as it offers the most efficient way to move values around, minimizing movements. Once the head and the tail of the list are connected, it becomes possible to 'jump' between the start and end of the list easily.
-
-To sort the data, numerous methods can be applied, such as Radix, Insert Sort, and others. I opted for the **Turkish Method** due to its high efficiency, typically requiring fewer movements compared to alternative methods.
-
-## Results
-
-The program reached the grade **100** needing **4,861 moves** to sort 500 numbers (the minimum to reach grade 100 are 5,500), so **12%** more efficient.
-
 ## Sources
 
-* **Double Linked List: Neso Academy** has one of the best YouTube channels that explains C programming concepts very easily and clear, here is the [link](https://www.youtube.com/watch?v=e9NG_a6Z0mg&pp=ygUSZG91YmxlIGxpbmtlZCBsaXN0).
+* **MiniLibX Guideline:** Many thank for Andre hernandez (Check his [Github](https://github.com/pulgamecanica)) who built the blog pulgamecanica that help me a lot understand how the MiniLibX works from scratch, you can check it out his amazing blog in these post [link](https://pulgamecanica.herokuapp.com/posts/mlx-starter-pack) and [link](https://pulgamecanica.herokuapp.com/posts/minilibx-tutorial).
 
-* **Turkish Method:** Many thanks to **A. Yigit Ogun** who explained about the method, you can reach his content [here](https://medium.com/@ayogun/push-swap-c1f5d2d41e97). 
-
-* **Push Swap Overview** from Jamie Dawson [link](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a).
+* **Bresenham Algorithm:** The wikipedia article helped me understand how the lines are drawn once only the dots coordinates are known [link](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm). 
 
 ## Contributing
 
