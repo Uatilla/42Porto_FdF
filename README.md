@@ -1,5 +1,5 @@
 # 42Porto_FdF
-**FdF Wireframe model** is a C project from the 42 School Common Core Program. The main goal of this project is to build a program that can receive an text input as a matrix and convert it to a graphical wireframe representation using the coordinates of each matrix value (x, y, z and color). Showing the result in a isometric perspective to be able to demonstrate the 3d perspective.
+**FdF Wireframe model** is a C project from the 42 School Common Core Program. The main goal of this project is to build a program that can receive a text input as a matrix and convert it to a graphical wireframe representation using the coordinates of each matrix value (x, y, z and color). Showing the result in a isometric perspective to be able to demonstrate the 3d perspective.
 For more detailed information, look at the [**subject of this project**](https://github.com/Uatilla/42Porto_FdF/blob/main/Project%20Files/FdF_en.subject.pdf).
 
 ## How to use it
